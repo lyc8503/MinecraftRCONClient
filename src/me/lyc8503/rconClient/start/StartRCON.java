@@ -30,7 +30,7 @@ public class StartRCON {
 		port = data.getPort();
 		System.out.println(data.getServer() + " " + data.getPort() + " " + data.getPassword());
 		try {
-			rcon = new Rcon("192.168.1.194", 25575, "lyc20030125".getBytes());
+			rcon = new Rcon(data.getServer(), Integer.parseInt(data.getPort()), data.getPassword().getBytes());
 		}catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error while Connecting to the Server:\n" + e.toString(), "MinecraftRCONClient - Error", JOptionPane.PLAIN_MESSAGE);
