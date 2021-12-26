@@ -20,9 +20,11 @@ public class Login {
 	public static JTextField passwordTextField;
 	public static JButton submitButton;
 	public static JButton exitButton;
-	public static boolean waitFlag = true;
+	public static boolean waitFlag;
 	
 	public static RCONData showInput() {
+	    waitFlag = true;
+
 		JFrame frame = new JFrame("Minecraft RCON Client - Login");
 		frame.setSize(350, 150);
 		frame.setResizable(false);

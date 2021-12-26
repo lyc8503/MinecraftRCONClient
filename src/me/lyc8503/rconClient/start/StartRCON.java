@@ -34,7 +34,8 @@ public class StartRCON {
 		}catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error while Connecting to the Server:\n" + e.toString(), "MinecraftRCONClient - Error", JOptionPane.PLAIN_MESSAGE);
-			System.exit(1);
+			ConnectFrame.stop();
+			main(new String[] {});
 		}
 		ConnectFrame.stop();
 		RCONUtilities.init(rcon);
