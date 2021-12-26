@@ -202,7 +202,7 @@ class AboutPanel extends JPanel{
 			}
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Desktop.getDesktop().mail(new URI("mailto:lyc8503@foxmail.com?subject=RCONClientBugReport"));
+					Desktop.getDesktop().mail(new java.net.URI("mailto:lyc8503@foxmail.com?subject=RCONClientBugReport"));
 				} catch (IOException e1) {} catch (URISyntaxException e1) {} 
 			}
 		});
