@@ -186,7 +186,30 @@ class AboutPanel extends JPanel{
 	public AboutPanel() {
 		setLayout(new GridLayout(7, 1));
 		add(new JLabel("Minecraft Rcon Client written By lyc8503"));
-		add(new JLabel("Bug Report : lyc8503@gmail.com"));
+		
+		
+		JLabel emailLabel = new JLabel("<html><font color=blue><u>" + "Bug Report: lyc8503@foxmail.com");
+		emailLabel.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {
+			}
+			public void mousePressed(MouseEvent e) {
+			}
+			public void mouseExited(MouseEvent e) {
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); 
+			}
+			public void mouseEntered(MouseEvent e) {
+				setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+			}
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().mail(new URI("mailto:lyc8503@foxmail.com?subject=RCONClientBugReport"));
+				} catch (IOException e1) {} catch (URISyntaxException e1) {} 
+			}
+		});
+		add(emailLabel);
+		
+		
+		
 		add(new JLabel("Learn more about Minecraft RCON:"));
 		JLabel link = new JLabel("<html><font color=blue><u>" + "https://minecraft.gamepedia.com/Server.properties");
 		link.addMouseListener(new MouseListener() {
