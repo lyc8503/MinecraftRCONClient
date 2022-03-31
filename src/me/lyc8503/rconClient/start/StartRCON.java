@@ -1,13 +1,14 @@
 package me.lyc8503.rconClient.start;
 
-import javax.swing.JOptionPane;
-
 import me.lyc8503.rconClient.gui.ConnectFrame;
 import me.lyc8503.rconClient.gui.Login;
 import me.lyc8503.rconClient.gui.MainFrame;
 import me.lyc8503.rconClient.gui.RCONData;
 import me.lyc8503.rconClient.socketUtilities.RCONUtilities;
 import net.kronos.rkon.core.Rcon;
+
+
+import javax.swing.*;
 
 public class StartRCON {
 	

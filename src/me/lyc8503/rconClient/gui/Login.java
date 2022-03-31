@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +27,20 @@ public class Login {
 	public static RCONData showInput() {
 	    waitFlag = true;
 
+	    String savedServer = "";
+        String savedPort = "25575";
+        String savedPassword = "";
+        try {
+            File tempFile = new File(System.getProperty("java.io.tmpdir") + "rcon-server.dat");
+            FileReader reader = new FileReader(tempFile);
+            Scanner sc = new Scanner(reader);
+            savedServer = sc.nextLine();
+            savedPort = sc.nextLine();
+            savedPassword = sc.nextLine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 		JFrame frame = new JFrame("Minecraft RCON Client - Login");
 		frame.setSize(350, 150);
 		frame.setResizable(false);
@@ -37,9 +53,9 @@ public class Login {
 		JLabel addressLabel = new JLabel("Server Address:");
 		JLabel passwordLabel = new JLabel("Password:");
 		JLabel portLabel = new JLabel("Server Port");
-		addressTextField = new JTextField();
-		portTextField = new JTextField("25575");
-		passwordTextField = new JTextField();
+		addressTextField = new JTextField(savedServer);
+		portTextField = new JTextField(savedPort.equals("") ? "25575" : savedPort);
+		passwordTextField = new JTextField(savedPassword);
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,6 +103,17 @@ public class Login {
 			} catch (Exception e) {
 			}
 		}
+
+        try {
+            File tempFile = new File(System.getProperty("java.io.tmpdir") + "rcon-server.dat");
+            tempFile.createNewFile();
+            FileWriter writer = new FileWriter(tempFile);
+            writer.write(addressTextField.getText() + "\n" + portTextField.getText() + "\n" + passwordTextField.getText());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 		frame.dispose();
 		return new RCONData(addressTextField.getText(), portTextField.getText(), passwordTextField.getText());
 	}
